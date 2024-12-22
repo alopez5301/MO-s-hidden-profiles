@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MO'S Hidden Profiles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .text {
+            margin: 15px 0;
+        }
+
+        .choices {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="scene" class="scene">
+            <div class="title">MO'S Hidden Profiles</div>
+            <div id="description" class="text">You stumble into MO's room. Somewhere in this chaos, MO has hidden the infamous vape files. Where do you start looking?</div>
+            <div id="choices" class="choices">
+                <button class="button" onclick="goToScene('drawer')">Check the drawer</button>
+                <button class="button" onclick="goToScene('closet')">Peek in the closet</button>
+                <button class="button" onclick="goToScene('under_bed')">Look under the bed</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scenes = {
+            drawer: {
+                description: "The drawer is packed with random papers and pens. No vape files here. What's next?",
+                choices: [
+                    { text: "Check the closet", nextScene: "closet" },
+                    { text: "Look under the bed", nextScene: "under_bed" },
+                ]
+            },
+            closet: {
+                description: "The closet is a labyrinth of clothes and shoes. But wait, there's a box in the corner... Nope, just old game controllers.",
+                choices: [
+                    { text: "Check the drawer", nextScene: "drawer" },
+                    { text: "Look under the bed", nextScene: "under_bed" },
+                ]
+            },
+            under_bed: {
+                description: "You find a dusty laptop with a folder named 'Totally Not Vape Files.' Bingo! You've found MO's hidden vape files!",
+                choices: [
+                    { text: "Restart the adventure", nextScene: "start" },
+                ]
+            },
+            start: {
+                description: "You stumble into MO's room. Somewhere in this chaos, MO has hidden the infamous vape files. Where do you start looking?",
+                choices: [
+                    { text: "Check the drawer", nextScene: "drawer" },
+                    { text: "Peek in the closet", nextScene: "closet" },
+                    { text: "Look under the bed", nextScene: "under_bed" },
+                ]
+            }
+        };
+
+        function goToScene(sceneName) {
+            const scene = scenes[sceneName];
+            const descriptionEl = document.getElementById("description");
+            const choicesEl = document.getElementById("choices");
+
+            descriptionEl.textContent = scene.description;
+            choicesEl.innerHTML = "";
+
+            scene.choices.forEach(choice => {
+                const button = document.createElement("button");
+                button.textContent = choice.text;
+                button.className = "button";
+                button.onclick = () => goToScene(choice.nextScene);
+                choicesEl.appendChild(button);
+            });
+        }
+    </script>
+</body>
+</html>
