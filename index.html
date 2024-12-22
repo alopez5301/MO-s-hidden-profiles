@@ -122,14 +122,14 @@
                 ]
             },
             random_path_5: {
-                description: "Finally, you discover an ancient bookmark leading to MO's secret prize! Click below to claim it!",
+                description: "Finally, you discover an ancient bookmark leading to MO's secret prize!",
                 choices: [
                     { text: "Claim the prize", nextScene: "prize" },
                     { text: "Restart the adventure", nextScene: "start" },
                 ]
             },
             prize: {
-                description: "Congratulations! You've unlocked MO's secret prize! <a href='https://alopez5301.github.io/AF/' target='_blank'>Click here to view it!</a>",
+                description: "<strong>Congratulations!</strong> You've unlocked MO's secret prize! <a href='https://alopez5301.github.io/AF/' target='_blank'>Click here to view it!</a>",
                 choices: [
                     { text: "Restart the adventure", nextScene: "start" },
                 ]
@@ -150,7 +150,7 @@
             const descriptionEl = document.getElementById("description");
             const choicesEl = document.getElementById("choices");
 
-            descriptionEl.textContent = scene.description;
+            descriptionEl.innerHTML = scene.description;
             choicesEl.innerHTML = "";
 
             scene.choices.forEach(choice => {
