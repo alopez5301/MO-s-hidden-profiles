@@ -66,6 +66,7 @@
                 <button class="button" onclick="goToScene('drawer')">Check the drawer</button>
                 <button class="button" onclick="goToScene('closet')">Peek in the closet</button>
                 <button class="button" onclick="goToScene('under_bed')">Look under the bed</button>
+                <button class="button" onclick="goToScene('random_path_1')">Take a random path</button>
             </div>
         </div>
     </div>
@@ -92,12 +93,54 @@
                     { text: "Restart the adventure", nextScene: "start" },
                 ]
             },
+            random_path_1: {
+                description: "You find yourself wandering through MO's old belongings. There's a strange path ahead.",
+                choices: [
+                    { text: "Keep going", nextScene: "random_path_2" },
+                    { text: "Turn back", nextScene: "start" },
+                ]
+            },
+            random_path_2: {
+                description: "The path twists and turns. You see a faint light in the distance.",
+                choices: [
+                    { text: "Head towards the light", nextScene: "random_path_3" },
+                    { text: "Take a detour", nextScene: "random_path_4" },
+                ]
+            },
+            random_path_3: {
+                description: "It's a false alarm! Just a glowing lamp. What's next?",
+                choices: [
+                    { text: "Go back", nextScene: "random_path_1" },
+                    { text: "Try another path", nextScene: "random_path_4" },
+                ]
+            },
+            random_path_4: {
+                description: "You stumble upon an old chest. Inside, you find... nothing useful. The files aren't here.",
+                choices: [
+                    { text: "Keep exploring", nextScene: "random_path_5" },
+                    { text: "Turn back", nextScene: "start" },
+                ]
+            },
+            random_path_5: {
+                description: "Finally, you discover an ancient bookmark leading to MO's secret prize! Click below to claim it!",
+                choices: [
+                    { text: "Claim the prize", nextScene: "prize" },
+                    { text: "Restart the adventure", nextScene: "start" },
+                ]
+            },
+            prize: {
+                description: "Congratulations! You've unlocked MO's secret prize! <a href='https://alopez5301.github.io/AF/' target='_blank'>Click here to view it!</a>",
+                choices: [
+                    { text: "Restart the adventure", nextScene: "start" },
+                ]
+            },
             start: {
                 description: "You stumble into MO's room. Somewhere in this chaos, MO has hidden the infamous vape files. Where do you start looking?",
                 choices: [
                     { text: "Check the drawer", nextScene: "drawer" },
                     { text: "Peek in the closet", nextScene: "closet" },
                     { text: "Look under the bed", nextScene: "under_bed" },
+                    { text: "Take a random path", nextScene: "random_path_1" },
                 ]
             }
         };
